@@ -1,0 +1,30 @@
+## check if the inverse of a matrix is already stored in memory. 
+## if not check if the determinant is not zero ie calculating the inverse is possible, 
+## then calculate the inverse and store in memory
+
+makeCacheMatrix <- function(x = matrix()) {
+  invrs <- NULL
+  set <- function(y) {
+    x <- y
+    invrs <- NULL
+  }
+  get <- function() x
+  setinverse <- function(inverse) invrs <- inverse
+  getinverse <- function() invrs
+  list(set = set, get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
+}
+
+cacheSolve <- function(x, ...) {
+  invrs <= x$getinverse()
+  if(!is.null(invrs)) {
+    message("getting cached data")
+    return(invrs)
+  }
+  mat <- x$get()
+  invrs <- if(det(mat) != 0){inv(mat)}
+  
+  x$setinverse(invrs)
+  invrs
+}
